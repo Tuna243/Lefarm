@@ -78,7 +78,7 @@ export function ProductsSection() {
                     alt={product.nameVi || product.nameEn || 'Product image'}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform group-hover:scale-105"
+                    className="object-contain p-2"
                   />
                 </div>
                 <CardContent className="p-4">
