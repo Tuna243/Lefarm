@@ -1,0 +1,197 @@
+// Prisma Schema - Lefarm Database
+// Complete schema based on admin pages
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ========================================
+// PRODUCT MODELS
+// ========================================
+
+model Product {
+  id             String            @id @default(cuid())
+  nameVi         String
+  nameEn         String
+  nameRU         String?
+  productCode    String            @unique
+  category       String
+  price          Float             @default(0)
+  image          String            // Primary image
+  images         String[]          // Array of image URLs (min 3)
+  description    String?           @db.Text
+  stock          Int               @default(0)
+  unit           String?
+  benefits       String[]          // Array of benefit strings
+  featured       Boolean           @default(false)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  
+  // Relations
+  Nutrition      Nutrition[]
+  ProductDetails ProductDetails[]
+  
+  @@index([category])
+  @@index([featured])
+  @@index([productCode])
+}
+
+model Nutrition {
+  id        String  @id @default(cuid())
+  productId String
+  label     String
+  value     String
+  unit      String?
+  
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@index([productId])
+}
+
+model ProductDetails {
+  id        String  @id @default(cuid())
+  productId String
+  key       String
+  value     String
+  
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@index([productId])
+}
+
+// ========================================
+// BLOG/NEWS MODELS
+// ========================================
+
+model News {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String?   @db.Text
+  content     String    @db.Text
+  image       String?
+  status      String    @default("draft") // draft, published
+  tags        String[]
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@index([status])
+  @@index([publishedAt])
+  @@index([slug])
+}
+
+// ========================================
+// BANNER MODELS
+// ========================================
+
+model Banner {
+  id        String   @id @default(cuid())
+  title     String
+  titleEn   String?
+  titleRU   String?
+  subtitle  String?
+  image     String
+  link      String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([order])
+  @@index([isActive])
+}
+
+// ========================================
+// LEAD & CONTACT MODELS
+// ========================================
+
+model Lead {
+  id          String    @id @default(cuid())
+  name        String
+  email       String?
+  phone       String
+  subject     String
+  message     String    @db.Text
+  status      String    @default("new") // new, contacted, converted, closed
+  notes       String?   @db.Text
+  contactedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  type      String   // phone, email, address, etc.
+  value     String
+  label     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// PROJECT MODELS
+// ========================================
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  image       String?
+  images      String[] // Changed from String? to String[]
+  category    String?
+  results     String?  @db.Text
+  year        Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([category])
+  @@index([year])
+  @@index([slug])
+}
+
+// ========================================
+// ANALYTICS MODELS
+// ========================================
+
+model PageVisit {
+  id        String   @id @default(cuid())
+  path      String
+  timestamp DateTime @default(now())
+  
+  @@index([path])
+  @@index([timestamp])
+}
+
+// ========================================
+// SYSTEM MODELS
+// ========================================
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([email])
+}
