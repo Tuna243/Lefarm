@@ -68,9 +68,9 @@ export function ProductsSection() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {featuredProducts.map((product) => (
-            <Link key={product.id} href={`/marketplace/${product.id}`} className="block">
+            <Link key={product.id} href={`/marketplace/${product.id}`} className="block w-full">
               <Card className="group h-full overflow-hidden transition-all hover:shadow-lg">
                 <div className="relative aspect-square w-full overflow-hidden bg-muted">
                   <Image
@@ -78,16 +78,16 @@ export function ProductsSection() {
                     alt={product.nameVi || product.nameEn || 'Product image'}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-contain p-2"
+                    className="object-contain p-2 sm:p-3 lg:p-4"
                   />
                 </div>
-                <CardContent className="p-4">
-                  <Badge variant="secondary" className="mb-2 capitalize">
+                <CardContent className="p-3 sm:p-4">
+                  <Badge variant="secondary" className="mb-2 text-xs capitalize">
                     {product.category}
                   </Badge>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary">{product.nameVi}</h3>
+                  <h3 className="text-sm font-semibold text-foreground group-hover:text-primary sm:text-base">{product.nameVi}</h3>
                   <div 
-                    className="mt-1 line-clamp-2 text-sm text-muted-foreground"
+                    className="mt-1 line-clamp-2 text-xs text-muted-foreground sm:text-sm"
                     dangerouslySetInnerHTML={{ __html: product.description || '' }}
                   />
                 </CardContent>
