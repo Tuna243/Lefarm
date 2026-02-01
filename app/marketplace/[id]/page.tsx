@@ -128,14 +128,14 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               <div className="grid gap-8 lg:grid-cols-2">
                 {/* Image Gallery */}
                 <div className="space-y-4">
-                  <div className="aspect-square overflow-hidden rounded-2xl border bg-card">
+                  <div className="aspect-square overflow-hidden rounded-2xl border bg-card relative w-full">
                     {activeImage && (
                       <Image
                         src={activeImage}
                         alt={getProductName(product)}
-                        width={600}
-                        height={600}
-                        className="h-full w-full object-cover"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
                         priority
                       />
                     )}
@@ -152,13 +152,13 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                         ? [product.image]
                         : []
                     return productImages.length > 1 ? (
-                      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
+                      <div className="grid grid-cols-3 gap-2 sm:gap-3 sm:grid-cols-4">
                         {productImages.map((img, index) => (
                           <button
                             type="button"
                             key={`${img}-${index}`}
                             className={cn(
-                              "aspect-square overflow-hidden rounded-lg border bg-card transition",
+                              "aspect-square overflow-hidden rounded-lg border bg-card transition relative",
                               img === activeImage
                                 ? "border-primary ring-2 ring-primary/20"
                                 : "border-border hover:border-primary/50"
@@ -168,9 +168,9 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                             <Image
                               src={img}
                               alt={getProductName(product)}
-                              width={160}
-                              height={160}
-                              className="h-full w-full object-cover"
+                              fill
+                              sizes="(max-width: 640px) 25vw, 20vw"
+                              className="object-cover"
                             />
                           </button>
                         ))}
@@ -236,14 +236,14 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                     {relatedProducts.map((relatedProduct) => (
                       <Link key={relatedProduct.id} href={`/marketplace/${relatedProduct.id}`}>
                         <Card className="group h-full overflow-hidden transition-all hover:shadow-lg">
-                          <div className="aspect-square overflow-hidden bg-muted">
+                          <div className="aspect-square overflow-hidden bg-muted relative w-full">
                             {relatedProduct?.images?.[0] || relatedProduct?.image ? (
                               <Image
                                 src={relatedProduct.images?.[0] || relatedProduct.image || "/placeholder.svg"}
                                 alt={getProductName(relatedProduct)}
-                                width={300}
-                                height={300}
-                                className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                                fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                className="object-cover transition-transform group-hover:scale-105"
                               />
                             ) : (
                               <div className="h-full w-full flex items-center justify-center">

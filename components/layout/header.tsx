@@ -57,11 +57,12 @@ export function Header() {
         <div className="mx-auto max-w-7xl flex items-center justify-between gap-4">
           {/* Logo - Left */}
           <Link href="/" className="flex-shrink-0" aria-label="Lefarm home">
-            <div className="relative h-16 w-16 sm:h-20 sm:w-20">
+            <div className="relative h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20">
               <Image
                 src="/logo.png"
                 alt="Lefarm Khanh Hoa logo"
                 fill
+                sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, 80px"
                 className="object-contain"
                 priority
               />
@@ -69,11 +70,11 @@ export function Header() {
           </Link>
 
           {/* Company Name - Center */}
-          <div className="flex-1 text-center">
-            <h1 className="text-base sm:text-xl lg:text-2xl font-bold text-green-700 uppercase leading-tight">
+          <div className="flex-1 text-center px-2">
+            <h1 className="text-xs sm:text-base md:text-xl lg:text-2xl font-bold text-green-700 uppercase leading-tight">
               {companyInfo.name}
             </h1>
-            <p className="hidden sm:block text-xs sm:text-sm text-gray-600 mt-1">
+            <p className="hidden sm:block text-[10px] sm:text-xs md:text-sm text-gray-600 mt-1">
               {companyInfo.address}
             </p>
           </div>

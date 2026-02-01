@@ -83,15 +83,16 @@ export function BannerCarousel() {
   const currentBanner = banners[currentIndex]
 
   const content = (
-    <div className="relative h-[250px] sm:h-[400px] lg:h-[600px] overflow-hidden">
+    <div className="relative h-[200px] sm:h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden w-full">
       {/* Background Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 w-full h-full">
         <Image
           src={currentBanner.image}
           alt={getTitle(currentBanner)}
           fill
-          className="object-fill span-full opacity-90"
+          className="object-cover w-full h-full opacity-90"
           priority
+          sizes="100vw"
         />
       </div>
 

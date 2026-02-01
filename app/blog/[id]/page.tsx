@@ -120,15 +120,16 @@ export default function BlogPostPage({ params }: { params: Promise<{ id: string 
 
         {/* Featured Image */}
         {post.image && (
-          <div className="relative mb-10 aspect-video overflow-hidden rounded-xl">
+          <div className="relative mb-10 aspect-video overflow-hidden rounded-xl w-full">
             <Image
               src={post.image}
               alt={post.title}
               fill
-            className="object-cover"
-            priority
-          />
-        </div>
+              sizes="(max-width: 1024px) 100vw, 896px"
+              className="object-cover"
+              priority
+            />
+          </div>
         )}
 
         {/* Article Content */}
@@ -156,11 +157,12 @@ export default function BlogPostPage({ params }: { params: Promise<{ id: string 
             {relatedPosts.map((relatedPost) => (
               <Link key={relatedPost.id} href={`/blog/${relatedPost.id}`}>
                 <Card className="group h-full overflow-hidden transition-shadow hover:shadow-lg">
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden w-full">
                     <Image
                       src={relatedPost.image || "/placeholder.svg"}
                       alt={relatedPost.title}
                       fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>

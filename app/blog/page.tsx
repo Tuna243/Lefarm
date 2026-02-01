@@ -105,11 +105,12 @@ function BlogContent() {
               {posts.slice(0, 2).map((post) => (
                 <Link key={post.id} href={`/blog/${post.id}`}>
                   <Card className="group h-full overflow-hidden transition-shadow hover:shadow-lg">
-                    <div className="relative aspect-video overflow-hidden">
+                    <div className="relative aspect-video overflow-hidden w-full">
                       <Image
                         src={post.image || "/placeholder.svg"}
                         alt={post.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
@@ -152,11 +153,12 @@ function BlogContent() {
               {filteredPosts.map((post) => (
                 <Link key={post.id} href={`/blog/${post.id}`}>
                   <Card className="group h-full overflow-hidden transition-shadow hover:shadow-lg">
-                    <div className="relative aspect-video overflow-hidden">
+                    <div className="relative aspect-video overflow-hidden w-full">
                       <Image
                         src={post.image || "/placeholder.svg"}
                         alt={post.title}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>

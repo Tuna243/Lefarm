@@ -164,13 +164,13 @@ export function MarketplaceClient() {
         >
           {filteredProducts.map((product) => (
             <Link key={product.id} href={`/marketplace/${product.id}`}>
-              <Card className={`h-full hover:shadow-lg transition-shadow ${view === 'list' ? 'flex' : ''}`}>
-                <div className={view === 'list' ? 'relative w-48 h-48 shrink-0' : 'relative w-full h-64'}>
+              <Card className={`h-full hover:shadow-lg transition-shadow overflow-hidden ${view === 'list' ? 'flex' : ''}`}>
+                <div className={view === 'list' ? 'relative w-32 h-32 sm:w-48 sm:h-48 shrink-0' : 'relative w-full aspect-square'}>
                   <Image
                     src={product.images?.[0] || product.image || '/placeholder.jpg'}
                     alt={getProductName(product)}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     className={view === 'list' ? 'object-cover rounded-l-lg' : 'object-cover rounded-t-lg'}
                     priority={false}
                   />

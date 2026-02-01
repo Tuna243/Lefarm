@@ -16,7 +16,7 @@ export function HeroSection() {
   ]
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-background mt-0">
+    <section className="relative overflow-hidden bg-linear-to-b from-muted/50 to-background mt-0">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div>
@@ -51,14 +51,14 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-video lg:aspect-square overflow-hidden rounded-2xl shadow-2xl">
+          <div className="relative w-full">
+            <div className="aspect-video lg:aspect-square overflow-hidden rounded-2xl shadow-2xl relative w-full">
               <Image
                 src="/aerial-view-of-farm-fields-with-vegetables.jpg"
                 alt="Farm fields with fresh produce"
-                width={600}
-                height={600}
-                className="h-full w-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
                 priority
               />
             </div>

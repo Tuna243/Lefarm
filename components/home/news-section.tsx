@@ -73,16 +73,17 @@ export function NewsSection() {
           {featuredArticle && (
             <Link
               href={`/blog/${featuredArticle.slug}`}
-              className="group relative h-full overflow-hidden rounded-lg"
+              className="group relative h-full overflow-hidden rounded-lg w-full"
             >
-              <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full">
+              <div className="relative aspect-4/3 lg:aspect-auto lg:h-full w-full overflow-hidden">
                 <Image
                   src={featuredArticle.image || "/placeholder.svg"}
                   alt={featuredArticle.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <div className="mb-3 flex flex-wrap gap-2">
@@ -117,13 +118,14 @@ export function NewsSection() {
               <Link
                 key={article.id}
                 href={`/blog/${article.slug}`}
-                className="group flex gap-4 overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-md"
+                className="group flex gap-3 md:gap-4 overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-md"
               >
-                <div className="relative h-24 w-32 md:h-32 md:w-40 flex-shrink-0">
+                <div className="relative h-20 w-24 sm:h-24 sm:w-32 md:h-32 md:w-40 shrink-0 overflow-hidden">
                   <Image
                     src={article.image || "/placeholder.svg"}
                     alt={article.title}
                     fill
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>

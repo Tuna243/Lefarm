@@ -72,13 +72,13 @@ export function ProductsSection() {
           {featuredProducts.map((product) => (
             <Link key={product.id} href={`/marketplace/${product.id}`}>
               <Card className="group h-full overflow-hidden transition-all hover:shadow-lg">
-                <div className="aspect-square overflow-hidden bg-muted">
+                <div className="aspect-square overflow-hidden bg-muted relative w-full">
                   <Image
                     src={product.image || "/placeholder.svg"}
                     alt={product.nameVi || product.nameEn || 'Product image'}
-                    width={300}
-                    height={300}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform group-hover:scale-105"
                   />
                 </div>
                 <CardContent className="p-4">
