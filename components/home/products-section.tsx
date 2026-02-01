@@ -70,9 +70,9 @@ export function ProductsSection() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProducts.map((product) => (
-            <Link key={product.id} href={`/marketplace/${product.id}`}>
+            <Link key={product.id} href={`/marketplace/${product.id}`} className="block">
               <Card className="group h-full overflow-hidden transition-all hover:shadow-lg">
-                <div className="aspect-square overflow-hidden bg-muted relative w-full">
+                <div className="relative aspect-square w-full overflow-hidden bg-muted">
                   <Image
                     src={product.image || "/placeholder.svg"}
                     alt={product.nameVi || product.nameEn || 'Product image'}
